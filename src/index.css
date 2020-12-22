@@ -107,7 +107,6 @@ p {
     line-height: 1;
   }
 }
-
 .btn {
   text-transform: uppercase;
   background: transparent;
@@ -134,7 +133,7 @@ p {
 .section-center {
   width: 90vw;
   margin: 0 auto;
-  max-width: 35rem;
+  max-width: 60rem;
   margin-top: 8rem;
 }
 @media screen and (min-width: 992px) {

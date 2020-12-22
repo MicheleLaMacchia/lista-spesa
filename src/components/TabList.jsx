@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
-import AppBar from "@material-ui/core/AppBar";
+import { makeStyles } from "@material-ui/core/styles";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
@@ -13,11 +13,11 @@ function TabPanel(props) {
     <div
       role="tabpanel"
       hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
+      id={`vertical-tabpanel-${index}`}
+      aria-labelledby={`vertical-tab-${index}`}
     >
       {value === index && (
-        <Box p={2}>
+        <Box p={3}>
           <Typography>{children}</Typography>
         </Box>
       )}
@@ -33,27 +33,48 @@ TabPanel.propTypes = {
 
 function a11yProps(index) {
   return {
-    id: `simple-tab-${index}`,
-    "aria-controls": `simple-tabpanel-${index}`,
+    id: `vertical-tab-${index}`,
+    "aria-controls": `vertical-tabpanel-${index}`,
   };
 }
 
-export default function SimpleTabs() {
-  const [value, setValue] = useState(0);
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+    backgroundColor: theme.palette.background.paper,
+    display: "flex",
+    height: 290,
+  },
+  tabs: {
+    borderRight: `1px solid hsl(210, 22%, 49%)`,
+  },
+}));
+
+export default function VerticalTabs() {
+  const classes = useStyles();
+  const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
   return (
-    <div className="grocery-container">
-      <AppBar position="static">
-        <Tabs value={value} onChange={handleChange}>
-          <Tab label="Generale" {...a11yProps(0)} />
-          <Tab label="Forneria" {...a11yProps(1)} />
-          <Tab label="Gastronomia" {...a11yProps(2)} />
-        </Tabs>
-      </AppBar>
+    <div className={classes.root}>
+      <Tabs
+        orientation="vertical"
+        variant="scrollable"
+        value={value}
+        onChange={handleChange}
+        aria-label="Vertical tabs example"
+        className={classes.tabs}
+      >
+        <Tab label="Generale" {...a11yProps(0)} />
+        <Tab label="Forneria/Gastronomia" {...a11yProps(1)} />
+        <Tab label="Pescheria" {...a11yProps(2)} />
+        <Tab label="Macelleria" {...a11yProps(3)} />
+        <Tab label="Ortofrutta" {...a11yProps(4)} />
+        <Tab label="Casalinghi" {...a11yProps(5)} />
+      </Tabs>
       <TabPanel value={value} index={0}>
         Item One
       </TabPanel>
@@ -62,6 +83,15 @@ export default function SimpleTabs() {
       </TabPanel>
       <TabPanel value={value} index={2}>
         Item Three
+      </TabPanel>
+      <TabPanel value={value} index={3}>
+        Item Four
+      </TabPanel>
+      <TabPanel value={value} index={4}>
+        Item Five
+      </TabPanel>
+      <TabPanel value={value} index={5}>
+        Item Six
       </TabPanel>
     </div>
   );
