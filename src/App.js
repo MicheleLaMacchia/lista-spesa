@@ -117,10 +117,16 @@ function App() {
           </button>
         </div>
       </form>
-      <TabList cat={cat} setCat={setCat} />
+      <TabList
+        cat={cat}
+        setCat={setCat}
+        items={list}
+        deleteItem={handleDelete}
+        editItem={handleEdit}
+      />
       {list.length > 0 && (
         <div className="grocery-container">
-          <List items={list} deleteItem={handleDelete} editItem={handleEdit} />
+          {/* <List items={list} deleteItem={handleDelete} editItem={handleEdit} /> */}
           <button className="clear-btn" onClick={() => clearList()}>
             pulisci lista
           </button>

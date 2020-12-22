@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
+import List from "./List";
 
 function TabPanel(props) {
   const { children, value, index } = props;
@@ -16,11 +16,7 @@ function TabPanel(props) {
       id={`vertical-tabpanel-${index}`}
       aria-labelledby={`vertical-tab-${index}`}
     >
-      {value === index && (
-        <Box p={3}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
+      {value === index && <Box>{children}</Box>}
     </div>
   );
 }
@@ -43,14 +39,20 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
     display: "flex",
-    height: 290,
+    height: 288,
   },
   tabs: {
     borderRight: `1px solid hsl(210, 22%, 49%)`,
   },
 }));
 
-export default function VerticalTabs({ cat, setCat }) {
+export default function VerticalTabs({
+  cat,
+  setCat,
+  items,
+  deleteItem,
+  editItem,
+}) {
   const classes = useStyles();
 
   const handleChange = (event, newValue) => {
@@ -76,22 +78,52 @@ export default function VerticalTabs({ cat, setCat }) {
         <Tab label="Casalinghi" {...a11yProps(5)} />
       </Tabs>
       <TabPanel value={cat} index={0}>
-        Item One
+        <List
+          items={items}
+          deleteItem={deleteItem}
+          editItem={editItem}
+          cat={cat}
+        />
       </TabPanel>
       <TabPanel value={cat} index={1}>
-        Item Two
+        <List
+          items={items}
+          deleteItem={deleteItem}
+          editItem={editItem}
+          cat={cat}
+        />
       </TabPanel>
       <TabPanel value={cat} index={2}>
-        Item Three
+        <List
+          items={items}
+          deleteItem={deleteItem}
+          editItem={editItem}
+          cat={cat}
+        />
       </TabPanel>
       <TabPanel value={cat} index={3}>
-        Item Four
+        <List
+          items={items}
+          deleteItem={deleteItem}
+          editItem={editItem}
+          cat={cat}
+        />
       </TabPanel>
       <TabPanel value={cat} index={4}>
-        Item Five
+        <List
+          items={items}
+          deleteItem={deleteItem}
+          editItem={editItem}
+          cat={cat}
+        />
       </TabPanel>
       <TabPanel value={cat} index={5}>
-        Item Six
+        <List
+          items={items}
+          deleteItem={deleteItem}
+          editItem={editItem}
+          cat={cat}
+        />
       </TabPanel>
     </div>
   );
