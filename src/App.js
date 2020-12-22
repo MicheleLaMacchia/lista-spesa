@@ -19,6 +19,7 @@ const getLocalStorage = () => {
 
 function App() {
   const [name, setName] = useState("");
+  const [cat, setCat] = React.useState(0);
   const [list, setList] = useState(getLocalStorage());
   const [isEditing, setIsEditing] = useState(false);
   const [editID, setEditID] = useState(null);
@@ -26,6 +27,7 @@ function App() {
     show: false,
     msg: "",
     type: "",
+    cat: null,
   });
 
   const handleSubmit = (e) => {
@@ -57,6 +59,7 @@ function App() {
       const newItem = {
         id: new Date().getTime().toString(),
         title: name.toUpperCase(),
+        cat: cat,
       };
       setList([...list, newItem]);
       setName("");
@@ -114,7 +117,7 @@ function App() {
           </button>
         </div>
       </form>
-      <TabList />
+      <TabList cat={cat} setCat={setCat} />
       {list.length > 0 && (
         <div className="grocery-container">
           <List items={list} deleteItem={handleDelete} editItem={handleEdit} />

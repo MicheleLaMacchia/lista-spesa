@@ -50,12 +50,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function VerticalTabs() {
+export default function VerticalTabs({ cat, setCat }) {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
-    setValue(newValue);
+    setCat(newValue);
   };
 
   return (
@@ -63,34 +62,35 @@ export default function VerticalTabs() {
       <Tabs
         orientation="vertical"
         variant="scrollable"
-        value={value}
+        value={cat}
         onChange={handleChange}
         aria-label="Vertical tabs example"
         className={classes.tabs}
+        indicatorColor="primary"
       >
         <Tab label="Generale" {...a11yProps(0)} />
-        <Tab label="Forneria/Gastronomia" {...a11yProps(1)} />
+        <Tab label="Forno/Gastronomia" {...a11yProps(1)} />
         <Tab label="Pescheria" {...a11yProps(2)} />
         <Tab label="Macelleria" {...a11yProps(3)} />
         <Tab label="Ortofrutta" {...a11yProps(4)} />
         <Tab label="Casalinghi" {...a11yProps(5)} />
       </Tabs>
-      <TabPanel value={value} index={0}>
+      <TabPanel value={cat} index={0}>
         Item One
       </TabPanel>
-      <TabPanel value={value} index={1}>
+      <TabPanel value={cat} index={1}>
         Item Two
       </TabPanel>
-      <TabPanel value={value} index={2}>
+      <TabPanel value={cat} index={2}>
         Item Three
       </TabPanel>
-      <TabPanel value={value} index={3}>
+      <TabPanel value={cat} index={3}>
         Item Four
       </TabPanel>
-      <TabPanel value={value} index={4}>
+      <TabPanel value={cat} index={4}>
         Item Five
       </TabPanel>
-      <TabPanel value={value} index={5}>
+      <TabPanel value={cat} index={5}>
         Item Six
       </TabPanel>
     </div>
